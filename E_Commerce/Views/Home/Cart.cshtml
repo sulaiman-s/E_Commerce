@@ -1,0 +1,141 @@
+﻿@model IEnumerable<E_Commerce.Models.CardModel>
+@{
+    ViewBag.Title = "Cart";
+
+}
+@{int total = 0;
+    var ft = 0;}
+<h2>Cart</h2>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table " id="tblcart">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="col-sm-8 col-md-6">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@Url.Content(item.ItemImage)" style="width: 72px; height: 72px;"> </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="#">@item.ItemName</a></h4>
+                                        <h5 class="media-heading"> by <a href="#">@item.Description</a></h5>
+                                        <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                        <input class="quantity" min="1" max="5" name="quantity" value="1" type="number" style="outline: none;" onkeypress="return false;" >
+                                        
+                            </td>
+
+                            <td class="col-sm-1 col-md-1 text-center" id="Prod_p"><input type="text" name="price" value="@item.Price $" class="price" style="border:none; outline:none; text-align:center; " readonly /></td>
+
+                           
+                            <td class="col-sm-1 col-md-1 text-center" id="tot"><input type="text" name="subprice" value="@item.Price $" class="subprice" readonly style="border: none; outline: none; text-align: center;"/> </td>
+
+                            <td class="col-sm-1 col-md-1">
+                                <a href="@Url.Action("CartRem","Home",new { id=item.Id})" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span> Remove
+                                    </a>
+                              
+                            </td>
+                        </tr>
+
+                        int c = Convert.ToInt32(item.Price);
+                        total += c;
+                        ft = total + 199;
+
+                    }
+
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Subtotal</h5></td>
+                        <td class="text-right"><input type="text" name="grdtotal" value="@total.00 $" class="grdtotal" readonly style="border: none; outline: none; text-align: center; padding-top:7.5px;" /></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h5>Estimated shipping</h5></td>
+                        <td class="text-right"><input type="text" name="shipprice" value="199.00 $" style="border: none; text-align: center; outline: none; padding-top:7.5px;" readonly/></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td><h3>Total</h3></td>
+                        <td class="text-right"><input type="text" name="gtotal" value="@ft.00 $" class="gtotal" readonly style="border: none; text-align:center; font-size:larger; font:bold; padding-top:18px; width:contain; outline: none;" /></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>   </td>
+                        <td>
+                            <a href="@Url.Action("Index","Home")" class="btn btn-default">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-success">
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+
+    <script>
+        var $tblrows = $("#tblcart tbody tr");
+        $tblrows.each(function (index) {
+            var $tblrow = $(this);
+            $tblrow.find(".quantity").on('change', function () {
+
+                var qty = $tblrow.find("[name=quantity]").val();
+                var prc = $tblrow.find("[name=price]").val();
+                var shipprice = $('.shipprice').val();
+                var subtotal = parseInt(qty, 10) * parseFloat(prc);
+                $tblrow.find(".subprice").val(subtotal.toFixed(2)+" $");
+
+                var grandTotal = 0;
+
+                $(".subprice").each(function () {
+                    var stval = parseFloat($(this).val());
+                    grandTotal += stval;
+                });
+
+                $('.grdtotal').val(grandTotal.toFixed(2)+" $");
+                var total = grandTotal +199;
+
+                $('.gtotal').val(total.toFixed(2)+" $");
+            });
+        });
+
+
+    </script>
+
+
+
+
+} 

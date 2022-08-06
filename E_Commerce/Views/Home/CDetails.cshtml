@@ -1,0 +1,55 @@
+﻿@model E_Commerce.ViewModels.HomeViewmodel
+@{
+    ViewBag.Title = "CDetails";
+}
+
+<h2  style="text-align: center; background: linear-gradient(to right, rgba(222,184,135),rgba(222,184,135,.5),rgba(222,184,135)) ">@ViewBag.Categ</h2>
+
+<div class="cardlist">
+
+    <div class="sidebar">
+        <h5>All Categories</h5>        
+            <ul style="margin-left:-30px; ">
+                
+                              
+                @foreach (var item in Model.Categories)
+                {
+                    <li style="width:300px;">
+                        <a href="@Url.Action("CardByCateg","Home",new { id=item.Id})">
+                            @item.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        
+
+    </div>
+    <div class="allCards">
+        @foreach (var item in Model.Cards)
+        {
+            <div class="card" style="width: 26rem;">
+                <div class="cardImage">
+                    <img src="@Url.Content(item.ItemImage)" class="card-img-top" alt="@item.ItemName+Image">
+                </div>
+              
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 16px; margin-left: 10px; font: bold; ">@item.ItemName</h5>
+                    <h5 style="font-size: 16px; margin-left: 10px; font: bold;">@item.ProductCode</h5>
+                    <h5 class="card-text" style="font-size: 18px; margin-left: 10px; color: #f57224; "> Rs.@item.Price </h5>
+                    @{
+                        var price = Convert.ToInt32(item.Price);
+                        var dis_price = price * 2;
+                        var discount = 50;
+                    }
+                    <h5 class="card-text" style="font-size: 12px; margin-left: 10px; color:lightslategray "> <span style="text-decoration:line-through">Rs.@dis_price</span><span> -@discount %</span> </h5>
+                    @Html.HiddenFor(g => item.Id)
+                    <div class="card-btn">
+                        @Html.ActionLink("Detail", "Details", new { id = item.Id })
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+

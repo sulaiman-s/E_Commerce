@@ -1,0 +1,79 @@
+﻿@model E_Commerce.ViewModels.CardViewModel
+
+@{
+    ViewBag.Title = "createCard";
+}
+
+<h2 class="label-default" style="text-align: center; ">Add Card Data</h2>
+
+<div style="display:flex; justify-content:center; background :linear-gradient()" >
+
+    @using (Html.BeginForm("create", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>CardModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardModel.ItemName, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CardModel.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardModel.ItemName, "", new { @class = "text-danger" })
+                </div>
+            </div> 
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardModel.ProductCode, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CardModel.ProductCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardModel.ProductCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardModel.ItemImage, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @* @Html.EditorFor(model => model.ItemImage, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <input type="file" name="file" id="file" required />
+                    @Html.ValidationMessageFor(model => model.CardModel.ItemImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardModel.Description, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CardModel.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardModel.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CardModel.Price, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.CardModel.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CardModel.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>  <div class="form-group">
+                @Html.LabelFor(model => model.CardModel.Category, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.DropDownListFor(model => model.Category_id, new SelectList(Model.Categories, "Id", "Name"), "Select Category", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Category_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

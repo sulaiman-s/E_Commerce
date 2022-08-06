@@ -1,0 +1,185 @@
+﻿@model E_Commerce.ViewModels.HomeViewmodel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+    <section id="card">
+        <h2 class="label-warning" style="text-align:center;">Cards Data</h2>
+        <p>
+            @Html.ActionLink("Create New Card", "Create", new { @class = "btn-link" })
+        </p>
+        <table class="table table-hover" id="CardTable" title="Card">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Product Code
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cards)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ItemName)
+                        </td>
+                        <td>
+                            <img src="@Url.Content(item.ItemImage)" alt="Image not found" height="80" width="80" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)$
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductCode)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+
+<hr />
+
+    <section id="banner">
+        <div> <h2 class="label-info" style="text-align:center;">Banners Data </h2></div>
+
+        <p>
+            @Html.ActionLink("Create New Banner", "CreateBan")
+        </p>
+        <table class="table table-hover" id="BannerTable">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Banner
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Banners)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RelatedName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <img src="@Url.Content(item.Ban_Img)" alt="Alternate Text" width="200" height="200" />
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditBan", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "DeleteBan", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </section>
+
+<section id="Category">
+    <h2>Category</h2>
+
+    <p>
+        @Html.ActionLink("Add New", "CreateCateg")
+    </p>
+    <table class="table" id="CategoryTable">
+        <thead>
+            <tr>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Image
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Categories)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.Image)" alt="Alternate Text" height="50" width="50" />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditCateg", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "DeleteCateg", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</section>
+
+@section Scripts{
+    <script>
+        
+        $(document).ready(function () {
+            $("#CardTable").DataTable({
+                "scrollY": "350px",
+                "scrollCollapse": true
+                
+                 
+
+            });
+            $("#BannerTable").DataTable(
+                {
+                    "scrollY": "200px",
+                    "scrollCollapse": true,
+                }
+            );
+        });
+        $("#CategoryTable").DataTable();
+        
+    </script>
+}
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<E_Commerce.Models.Category>
+
+
+<li>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="All Categories">Category <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        @foreach (var item in Model)
+        {
+        <li>
+            <a href="@Url.Action("CardByCateg","Home",new { id=item.Id})" class="">
+                @item.Name
+            </a>
+        </li>
+
+        }
+
+    </ul>
+</li>

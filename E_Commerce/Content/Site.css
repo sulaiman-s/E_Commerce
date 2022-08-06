@@ -1,0 +1,286 @@
+﻿/*#region Mvc Defaul Css for body and content*/
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+html{
+    scroll-behavior:smooth;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    left:0;
+    right:0;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+companyName{
+  text-align:center;
+}
+/*#endregion*/
+/*#region Custom Card Css*/
+.allCards{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:space-around;
+    align-items:center;
+    
+}
+.allCards>*{
+    margin:8px;
+}
+.card {
+    border: 1px solid thick;
+    box-shadow: 0 0 14px rgba(0,0,0,.2);
+    transition:all 1s ease-out;
+}
+.card:hover {
+    transition: all .3s ease;
+    transform: translateY(-5px);
+      
+    box-shadow: 0 0 20px burlywood;
+}
+.card-img-top{
+    height:200px;
+    width:200px;
+    
+    object-fit:fill;
+    
+}
+#card,#banner,#Category{
+    width:100%;
+    height:calc(100vh-50px);
+    position:relative;
+    
+    
+}
+html{
+    scroll-behavior:smooth;
+}
+.cardImage{
+    text-align:center;
+    /*object-fit:fill;*/
+}
+.card{
+
+    background-color:white;
+    
+}
+.card-price{
+    display:flex;
+    justify-content:space-between;
+}
+.card-btn{
+    text-align:center;
+    
+}
+.card-btn a{
+    margin-right:10px;
+    width:200px;
+}
+/*#endregion*/
+/*#region DetailPage Media and webkit queries*/
+
+@-webkit-keyframes opacity {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(3);
+        transform: scale(3);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(3);
+        transform: scale(3);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+
+@media screen and (min-width: 997px) {
+    .wrapper {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 996px) {
+    .preview {
+        margin-bottom: 20px;
+    }
+}
+/*#endregion*/
+/*#region scrolbar Css*/
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+    
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: lightgray;
+   
+    border-radius: 5px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: gray;
+    }
+
+/*#endregion*/
+/*#region navbar css*/
+ul li:hover{
+    
+    
+}
+
+#navb {
+    background-color: rgba(222,184,135,.8);
+}
+.navbar-inverse .navbar-nav > li > a {
+color:black;
+}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: white;
+    background-color:burlywood;
+}
+
+ul li:hover{
+    background-color:burlywood;
+}
+.dropdown-menu>li:hover >a  {
+    background-color:rgba(222,184,135);
+}
+.dropdown-menu {
+    background-color: rgba(222,184,135,.8);
+}
+/*#endregion*/
+/*#region footer*/
+.remove-bullets {
+    list-style-type: none;
+    text-decoration: none;
+    color:black;
+}
+.bullets a {
+    text-decoration: none;
+
+    color:black;
+}
+.bullets li{
+    list-style:none;
+    
+
+}
+
+.remove-bullets a {
+    text-decoration: none;
+    color:black;
+ }
+
+footer {
+    background: linear-gradient(to bottom right, rgba(222,184,135.8),rgba(222,184,135,.4),rgba(222,184,135,8));
+}
+/*#endregion */
+/*#region sidebar*/
+.sidebar {
+width: 170px;
+overflow: hidden;
+border-top:1px solid black;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    font: bold;
+    color: black;
+}
+
+    .sidebar ul li:hover{
+        background:white;
+        color:blue;
+    }
+
+    .cardlist {
+        display: flex;
+
+    }
+    .cardlist .allCards{
+        
+        flex-grow:6;
+    }
+      
+        /*#endregion*/
+/*#region animation*/
+        .heading {
+            animation: 2.5s ease .5s 1 head;
+        }
+
+
+#cd{
+    animation: 1s ease .6s 1 Trans;
+}
+
+@keyframes Trans{
+
+    from{
+        opacity:0;
+        transform:translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes head{
+    from{
+        opacity:0;
+        transform:translateZ(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+/*#endregion*/
+
+
+#Clable{
+    
+   text-align:start;
+}
+
